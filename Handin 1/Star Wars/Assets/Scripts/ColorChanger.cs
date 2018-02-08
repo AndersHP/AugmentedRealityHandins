@@ -6,7 +6,6 @@ public class ColorChanger : MonoBehaviour {
 	GameObject path;
 	GameObject shuttle;
 	Renderer renderer;
-	float epsilon = 0.05f;
 
 	void Start () 
 	{
@@ -17,17 +16,18 @@ public class ColorChanger : MonoBehaviour {
 
 	void Update () 
 	{
-		// if some dotproduct (local or global pos???) is close to 0, be green, if not red
-
-		float dot = Vector3.Dot (path.transform.forward, shuttle.transform.right);
+		float dot_forward_right = Vector3.Dot (path.transform.forward, shuttle.transform.right);
+		float dot_forward_up = Vector3.Dot (path.transform.forward, shuttle.transform.up);
 
 		// Smooth transition form green to red 
-		float r, g, b = 0.0f;
-		r = Mathf.Abs (dot);
-		g = 1 - r;
-		Color c = new Color (r,g,b);
+		float r1, g1, r2, g2, b = 0.0f;
+		r1 = Mathf.Abs (dot_forward_right) ;
+		g1 = (1 - r1) / 2;
+		r2 = Mathf.Abs (dot_forward_up) ;
+		g2 = (1 - r2) / 2;
+
+		Color c = new Color (r1+r2, g1 + g2, b);
 		renderer.material.color = c; 
-	
 	}
 
 	private void OnGUI()
