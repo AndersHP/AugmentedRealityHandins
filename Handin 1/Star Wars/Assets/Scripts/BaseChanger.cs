@@ -23,6 +23,7 @@ public class BaseChanger : MonoBehaviour {
 		GUI.color = Color.red;
 		GUI.Label (new Rect (10, 10, 500, 100), "LocalPosition space shuttle: " + spaceShuttle.transform.localPosition);
 		GUI.Label (new Rect (10, 30, 500, 100), "LocalPosition earth: " + earth.transform.localPosition);
+		GUI.Label (new Rect (10, 50, 500, 100), "transform: " + spaceShuttle.transform );
 
 		// forward dotted with right = 0 if two forward vectors are aligned
 //		GUI.Label (new Rect (10, 50, 500, 100), "DotProduct forward: " + Vector3.Dot(path.transform.forward, shuttle.transform.right));
