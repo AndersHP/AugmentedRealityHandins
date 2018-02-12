@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
   <Tracking>
+    <ImageTarget name="Path" size="10.000000 27.333334" />
     <ImageTarget name="Enemy2" size="4.000000 5.173554" />
     <ImageTarget name="Enemy_Spaceship" size="4.000000 4.711111" />
     <ImageTarget name="Falcon" size="7.500000 9.403625" />
     <ImageTarget name="Plane" size="6.000000 8.278330" />
-    <ImageTarget name="Path" size="10.000000 25.649548" />
     <ImageTarget name="Earth" size="19.500000 19.468241" />
-    <ImageTarget name="ninja" size="300.000000 300.000000" />
   </Tracking>
 </QCARConfig>

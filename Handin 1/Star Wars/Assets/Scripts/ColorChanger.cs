@@ -7,6 +7,7 @@ public class ColorChanger : MonoBehaviour {
 	GameObject shuttle;
 	Renderer renderer;
 
+
 	void Start () 
 	{
 		shuttle = GameObject.Find("IT_space_shuttle");
