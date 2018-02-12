@@ -6,26 +6,42 @@ public class BaseChanger : MonoBehaviour {
 
 	GameObject spaceShuttle;
 	GameObject earth;
+	GameObject nose;
 
-	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 		spaceShuttle = GameObject.Find("IT_Space_Shuttle");
 		earth = GameObject.Find("IT_Earth");
+		nose = GameObject.Find ("IT_Space_Shuttle/nose");
+
+		// TODO: Transform nose to world coords and then to earth coords. 
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
+	void Update () 
+	{
+
+		//Vector3 noseLocalPosition = nose.transform.localPosition;
+
+	
 	}
 
 	private void OnGUI()
 	{
 		GUI.color = Color.red;
-		GUI.Label (new Rect (10, 10, 500, 100), "LocalPosition space shuttle: " + spaceShuttle.transform.localPosition);
-		GUI.Label (new Rect (10, 30, 500, 100), "LocalPosition earth: " + earth.transform.localPosition);
 
-		// forward dotted with right = 0 if two forward vectors are aligned
-//		GUI.Label (new Rect (10, 50, 500, 100), "DotProduct forward: " + Vector3.Dot(path.transform.forward, shuttle.transform.right));
+		Matrix4x4 shuttleToEarthTransform = earth.transform.worldToLocalMatrix * spaceShuttle.transform.localToWorldMatrix *  nose.transform.localToWorldMatrix;
+		Vector3 pos = shuttleToEarthTransform.MultiplyPoint3x4(nose.transform.localPosition);
 
+		GUI.Label (new Rect (10, 10, 500, 100), "LocalPosition earth: " + earth.transform.localPosition);
+		GUI.Label (new Rect (10, 30, 500, 100), "NoseLocalPos (in earth): \n X: " + pos.x + " \n Y: " +  pos.y + "\n Z: " + pos.z);
+
+
+		// TODO check its over the earth
+		float distance = Mathf.Sqrt(Mathf.Pow(pos.x,2) + Mathf.Pow(pos.y,2));
+		GUI.Label(new Rect (10, 190, 500, 100), "asd: " + distance);
+			
+
+		string hemisphere = pos.y > 0 ? "North" : "south";
+		GUI.Label (new Rect (10, 90, 500, 100), "Hemisphere: " + hemisphere);
 	}
 }
