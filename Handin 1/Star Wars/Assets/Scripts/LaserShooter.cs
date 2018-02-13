@@ -7,7 +7,9 @@ public class LaserShooter : MonoBehaviour {
 	GameObject falcon;
 	GameObject tieFighter;
 
-	public float rayLength = 10; 
+	public ParticleSystem explosion;
+
+	public float rayLength; 
 	private Ray ray; 
 	private Material material;
 
@@ -15,14 +17,35 @@ public class LaserShooter : MonoBehaviour {
 	void Start () {
 		falcon = GameObject.Find ("IT_Falcon");
 		tieFighter = GameObject.Find ("IT_TIE_Fighter");
+//		ParticleSystem exp = GetComponents<ParticleSystem> ("Explosion");
+		ray = new Ray ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		float falcon_forward = falcon.transform.forward;
-		Debug.DrawRay(ray.origin, ray.direction * rayLength);
-		
+
+		if (Input.GetKeyDown ("space")) {
+			Debug.Log("space key was pressed");
+//			ray = new Ray (falcon.transform.position, falcon.transform.forward);
+			ray.origin = falcon.transform.position;
+			ray.direction = falcon.transform.forward;
+		}
+
+		if (Physics.Raycast(ray.origin, ray.direction, rayLength)){
+			Debug.Log ("Hit an enemy");
+//			Instantiate (tieFighter, hit.point, Quaternion.identity);
+			Explode();
+		}
+			
+		if (Input.GetKeyUp ("space")) {
+			Debug.Log("space key was released");
+			ray.origin = new Vector3 (0, 0, 0);
+			ray.direction = new Vector3 (0, 0, 0);
+		}
+
+
 	}
+		
 
 	private void OnGUI()
 	{
@@ -30,24 +53,28 @@ public class LaserShooter : MonoBehaviour {
 		GUI.Label (new Rect (10, 10, 500, 100), "LocalPosition falcon: " + falcon.transform.localPosition);
 		GUI.Label (new Rect (10, 30, 500, 100), "LocalPosition tie fighter: " + tieFighter.transform.localPosition);
 
+
 		// forward dotted with right = 0 if two forward vectors are aligned
 //		GUI.Label (new Rect (10, 50, 500, 100), "DotProduct forward: " + Vector3.Dot(path.transform.forward, shuttle.transform.right));
 
 	}
 
-	void OnRenderObject() {
+	public void OnRenderObject() {
 
 		if (material == null) {
 			material = new Material (Shader.Find ("Hidden/Internal-Colored")); 
 		}
 		material.SetPass (0);
 
-
 		GL.Begin(GL.LINES); 
 		GL.Color(Color.red); 
 		GL.Vertex(ray.origin); 
-		GL.Vertex(ray.origin + ray1.direction * rayLength); 
+		GL.Vertex(ray.origin + ray.direction * rayLength); 
 		GL.End();
+	}
 
+	void Explode() {
+//		ParticleSystem explosion = tieFighter.GetComponent<ParticleSystem>();
+		explosion.Play();
 	}
 }

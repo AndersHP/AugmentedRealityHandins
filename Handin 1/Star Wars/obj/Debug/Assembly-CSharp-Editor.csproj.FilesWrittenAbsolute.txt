@@ -50,3 +50,7 @@
 /Users/Shuxiao/Repositories/AugmentedRealityHandins/Handin 1/Star Wars/Temp/bin/Debug/Unity.CecilTools.dll
 /Users/Shuxiao/Repositories/AugmentedRealityHandins/Handin 1/Star Wars/Temp/bin/Debug/Unity.Cecil.Pdb.dll
 /Users/Shuxiao/Repositories/AugmentedRealityHandins/Handin 1/Star Wars/Temp/bin/Debug/Unity.Cecil.Mdb.dll
+/Users/Shuxiao/Repositories/AugmentedRealityHandins/Handin 1/Star Wars/Temp/bin/Debug/Assembly-CSharp-firstpass.dll
+/Users/Shuxiao/Repositories/AugmentedRealityHandins/Handin 1/Star Wars/Temp/bin/Debug/Assembly-CSharp-firstpass.dll.mdb
+/Users/Shuxiao/Repositories/AugmentedRealityHandins/Handin 1/Star Wars/Temp/bin/Debug/Assembly-CSharp-Editor-firstpass.dll
+/Users/Shuxiao/Repositories/AugmentedRealityHandins/Handin 1/Star Wars/Temp/bin/Debug/Assembly-CSharp-Editor-firstpass.dll.mdb

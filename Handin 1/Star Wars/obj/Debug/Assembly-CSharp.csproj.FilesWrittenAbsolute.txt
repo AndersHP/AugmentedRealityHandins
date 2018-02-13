@@ -50,3 +50,5 @@
 /Users/Shuxiao/Repositories/AugmentedRealityHandins/Handin 1/Star Wars/Temp/bin/Debug/Assembly-CSharp.dll
 /Users/Shuxiao/Repositories/AugmentedRealityHandins/Handin 1/Star Wars/obj/Debug/Assembly-CSharp.dll
 /Users/Shuxiao/Repositories/AugmentedRealityHandins/Handin 1/Star Wars/obj/Debug/Assembly-CSharp.dll.mdb
+/Users/Shuxiao/Repositories/AugmentedRealityHandins/Handin 1/Star Wars/Temp/bin/Debug/Assembly-CSharp-firstpass.dll
+/Users/Shuxiao/Repositories/AugmentedRealityHandins/Handin 1/Star Wars/Temp/bin/Debug/Assembly-CSharp-firstpass.dll.mdb
