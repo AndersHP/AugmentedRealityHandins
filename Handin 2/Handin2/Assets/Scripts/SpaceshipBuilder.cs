@@ -17,23 +17,31 @@ public class SpaceshipBuilder : MonoBehaviour {
 		mesh.RecalculateNormals();
 
 		// If using "particles/additive(soft)" shader it looks cool with random vertex colors
-		Color[] colors = new Color[54];		
-		for(int i = 0; i<mesh.vertices.Length; i++)
-			colors[i] = Random.ColorHSV();
-		mesh.colors = colors;
+
+		mesh.colors = newVertexColors();
 	}		
 
 	
 	void Update(){
-
+		//mesh.Clear();
 		// Flap dem wings 
         Vector3[] v = mesh.vertices;
         Vector3[] normals = mesh.normals;
         int[] wingVertices = {2,43,44,45,6,40,41,42};
         foreach(int i in wingVertices) {
-            v[i] += Vector3.up * ((Time.time * 7 % 2) -1)   ;
+            v[i] += Vector3.up * ((2*Time.time % 2) -1) /10   ;
 		}
+
         mesh.vertices = v;
+		mesh.colors = newVertexColors();
+	}
+
+	Color[] newVertexColors()
+	{
+		Color[] colors = new Color[54];		
+		for(int i = 0; i<mesh.vertices.Length; i++)
+			colors[i] = Random.ColorHSV();
+		return colors;
 	}
 	
 
