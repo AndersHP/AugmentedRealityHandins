@@ -3,22 +3,42 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Builds a sic spaceship
-// To use, attach to empty gameobject  (right click -> create empty). Also add "Mesh Filter" and a "Mesh renderer" to this game object. Finally add material and choose a shader.
+// To use, attach to empty gameobject  (right click -> create empty). Also add "Mesh Filter" and a "Mesh renderer" to this game object. Finally add material and choose a shader for the material.
 public class SpaceshipBuilder : MonoBehaviour {
 
-
+	private Mesh mesh;
 	void Start () 
 	{
-		Mesh mesh = new Mesh ();
+		mesh = new Mesh ();
 		GetComponent<MeshFilter>().mesh = mesh;
 
 		mesh.vertices = vertices();
 		mesh.triangles = triangles();
 		mesh.RecalculateNormals();
+
+		// If using "particles/additive(soft)" shader it looks cool with random vertex colors
+		Color[] colors = new Color[54];		
+		for(int i = 0; i<mesh.vertices.Length; i++)
+			colors[i] = Random.ColorHSV();
+		mesh.colors = colors;
 	}		
 
+	
+	void Update(){
+
+		// Flap dem wings 
+        Vector3[] v = mesh.vertices;
+        Vector3[] normals = mesh.normals;
+        int[] wingVertices = {2,43,44,45,6,40,41,42};
+        foreach(int i in wingVertices) {
+            v[i] += Vector3.up * ((Time.time * 7 % 2) -1)   ;
+		}
+        mesh.vertices = v;
+	}
+	
+
 	// Returns array of vertices. 
-	// All vertices except 2 have y = 0, the last two have y = 0.5
+	// All vertices except 2 have y = 0
 	Vector3[] vertices()
 	{
 		Vector3[] vertices = new Vector3[54];
@@ -33,7 +53,7 @@ public class SpaceshipBuilder : MonoBehaviour {
 		vertices[6] = new Vector3(4, 0, 1);
 		vertices[7] = new Vector3(1, 0, 0);
 		vertices[8] = new Vector3 (0, 0, 2.5F);
-		// y = 0.5
+		// y = 1.5
 		vertices [9] = new Vector3 (-1, 1.5F, 1);
 		vertices [10] = new Vector3 (1, 1.5F, 1);
 		
@@ -102,6 +122,7 @@ public class SpaceshipBuilder : MonoBehaviour {
 	
 	// Returns array of indices corresponding to triangles. 
 	// index 0,1,2 is interpreted as a triangle, so is 3,4,5 etc. 
+	// in total 54/3 = 18 triangles
 	int[] triangles()
 	{
 		int[] tri = new int[54];
