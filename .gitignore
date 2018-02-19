@@ -33,3 +33,6 @@ sysinfo.txt
 # Builds
 *.apk
 .DS_Store
+
+# Specific
+Handin 2/Handin 2/Assets/OpenCVForUnity
